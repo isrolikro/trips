@@ -1,14 +1,7 @@
-import { Link } from "react-router-dom";
 
-const connection = () => {
 
-    return ( 
-<div>
-    <Link to ='connection'>
- 
-   </Link>
-</div>
-     );
-}
-
-export default connection;
+const UserLogin = () => {
+    return <div>User Login</div>;
+  };
+  
+  export default UserLogin;
