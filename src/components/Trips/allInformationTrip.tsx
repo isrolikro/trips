@@ -6,33 +6,28 @@ import { Trip } from "../../interfce/interfceTrip";
 import "./Trips.css";
 
 function AllInformationTrip(): JSX.Element {
-  const [trip, setTrip] = useState<Trip[] | null>(null);
+  const [trip, setTrip] = useState<Trip[] | null>(()=> {
+    getTrips(id)
+  });
   const { id } = useParams();
-  const getTrips = async () => {
-    console.log('oooo');
-    
+
+  const getTrips = async (id:any) => {
     try {
-      console.log('hello');
       
       const res = await axios.get<Trip[]>(
         `http://localhost:3000/api/trips/${id}`
       );
+      
       if (res.data) {
-        const tripsFromServer: Trip[] = res.data;
-        console.log('pppp');
-        
-        setTrip(tripsFromServer);
-
+        setTrip(res.data)
       }
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
-    console.log('hello 6');
-    
-    getTrips();
-  }, []);
+    getTrips(id);
+  }, [id]);
 
   return (
     <div className="card">
