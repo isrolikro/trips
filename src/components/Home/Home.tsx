@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 // import Trips from '../Trips'
+import './Home.css'
 
 const Home = () => {
 
@@ -17,6 +18,8 @@ const Home = () => {
     <Link to ='/Login'>
     <button>connection</button>
     </Link>
+
+
 
 </div>
      );

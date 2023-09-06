@@ -22,6 +22,7 @@ const Trips = () => {
   }, []);
 
   const divClik = (id: string) => {
+    
     navigate(`/tripDetail/${id}`);
   };
 
@@ -32,13 +33,14 @@ const Trips = () => {
         <button> Return to home page </button>
       </Link>
 
-      <Link to="NewTripForm">
+      <Link to="NewTrip">
         <button>to create a new trip</button>
       </Link>
       <div className="card">
         {trips?.map((trip) => {
           return (
-            <div onClick={() => divClik(trip.id)}>
+            <div key={trip.id}
+            onClick={() => divClik(trip.id)}>
               <div
                 style={{
                   height: "20rem",
