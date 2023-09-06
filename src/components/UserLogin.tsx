@@ -2,23 +2,29 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const UserLogin: React.FC = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
 
   const handleSubmit = async () => {
     try {
       const user = { email: email, password: password };
 
-      const resp = await axios.post(`http://localhost:3000/api/auth/login`, user, {
-        headers: { Authorization: "test-token" },
-      });
-      console.log(resp.data);
-      
+      const resp = await axios.post(
+        `http://localhost:3000/api/auth/login`,
+        user,
+        {
+          headers: { Authorization: "test-token" },
+        }
+      );
+      console.log(resp.data.responseObj.token);
+      // setToken(resp.data.responseObj.token)
+      localStorage.setItem(
+        "@token",
+        JSON.stringify(resp.data.responseObj.token)
+      );
 
       navigate("/");
     } catch (error) {
@@ -53,6 +59,4 @@ const UserLogin: React.FC = () => {
   );
 };
 
-
-
-  export default UserLogin;
+export default UserLogin;
